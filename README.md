@@ -3,9 +3,9 @@ This project will be developed on stream, [twitch](https://twitch.tv/thopdev)
 
 # Stream one:
 [Creating Blazor Project](https://github.com/thopdev/THopFood/tree/1-BlazorSetup)  
-[Adding MudBlazor](https://github.com/thopdev/THopFood/tree/2-MudBlazor)
+[Adding MudBlazor](https://github.com/thopdev/THopFood/tree/2-MudBlazor)  
 [Creating a Recipe Title Card](https://github.com/thopdev/THopFood/tree/3-RecipeTitleCard)  
-[Adding bUnit](https://github.com/thopdev/THopFood/tree/10-Bunit)
+[Adding bUnit](https://github.com/thopdev/THopFood/tree/10-Bunit)  
 
 
 # Color Scheme
