@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31004.235
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThopFood.Blazor", "ThopFood.Blazor\ThopFood.Blazor.csproj", "{54ED5076-D9A1-4F38-B6DC-50EF490A028A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThopFood.Blazor.BUnit", "..\ThopFood.Blazor.BUnit\ThopFood.Blazor.BUnit.csproj", "{46D26195-626C-4ED0-8BC3-4837FCE4D3D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThopFood.Blazor.BUnit", "ThopFood.Blazor.BUnit\ThopFood.Blazor.BUnit.csproj", "{CA92428C-9DD8-4A51-8728-E827FB711148}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{16DA982D-4293-4BDD-8096-2AC7FADCE465}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,10 @@ Global
 		{54ED5076-D9A1-4F38-B6DC-50EF490A028A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54ED5076-D9A1-4F38-B6DC-50EF490A028A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54ED5076-D9A1-4F38-B6DC-50EF490A028A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46D26195-626C-4ED0-8BC3-4837FCE4D3D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46D26195-626C-4ED0-8BC3-4837FCE4D3D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46D26195-626C-4ED0-8BC3-4837FCE4D3D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46D26195-626C-4ED0-8BC3-4837FCE4D3D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA92428C-9DD8-4A51-8728-E827FB711148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA92428C-9DD8-4A51-8728-E827FB711148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA92428C-9DD8-4A51-8728-E827FB711148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA92428C-9DD8-4A51-8728-E827FB711148}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
