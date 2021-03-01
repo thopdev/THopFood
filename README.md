@@ -1,6 +1,12 @@
 # THopFood
 This project will be developed on stream, [twitch](https://twitch.tv/thopdev)
 
+# Stream one:
+https://github.com/thopdev/THopFood/tree/1-BlazorSetup
+https://github.com/thopdev/THopFood/tree/2-MudBlazor
+https://github.com/thopdev/THopFood/tree/3-RecipeTitleCard
+https://github.com/thopdev/THopFood/tree/10-Bunit
+
 # Color Scheme
 ![palette](https://user-images.githubusercontent.com/9268249/109420459-e65ed600-79d2-11eb-86b3-5483dbcb4c94.png)
 Primary: 8FC93A
