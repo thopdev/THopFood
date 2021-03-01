@@ -1,7 +1,13 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<MudGrid Class="mt-6 py-2">
+    <MudItem xs="2"></MudItem>
+    <MudItem xs="5">
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+        <RecipeTitleCardComponent Recipe="@_recipe" OnRecipeChange="@(()=> Console.WriteLine("Recipe has changed!"))" />
+        
+    </MudItem>
+</MudGrid>
+
+

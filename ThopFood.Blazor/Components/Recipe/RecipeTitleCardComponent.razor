@@ -1,0 +1,33 @@
+﻿<MudCard Class="">
+    <MudCardHeader>
+        <CardHeaderContent>
+            @if (Loaded)
+            {
+                <MudText>@Recipe.Title</MudText>
+                <MudText>@Recipe.Description</MudText>
+            }
+            else
+            {
+                <MudSkeleton Width="80%" Height="42px;" />
+                <MudSkeleton Width="100%" />
+            }
+        </CardHeaderContent>
+        <CardHeaderActions>
+            @if (Loaded)
+            {
+                <MudIconButton Icon="@(Recipe.Favorite ? Icons.Material.Outlined.Favorite : Icons.Material.Outlined.FavoriteBorder)" Color="Color.Secondary" OnClick="FavoriteClick" />
+            }
+            else
+            {
+                <MudSkeleton SkeletonType="SkeletonType.Circle" Height="50px" Width="50px" />
+
+            }
+            </CardHeaderActions>
+    </MudCardHeader>
+    @if (Loaded)
+    {
+        <MudCardMedia Image="@Recipe.ImageUrl" Height="250" />
+    } else {
+    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="250px" />
+    }
+</MudCard>
