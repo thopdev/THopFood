@@ -1,0 +1,9 @@
+﻿<div class="d-flex justify-space-around">
+    @for (var i = 1; i <= AmountOfStars; i++)
+    {
+        var buttonNumber = i;
+        var type = GetIconType(i);
+
+        <MudIconButton Icon="@type" Color="Color.Secondary" Size="Size.Large" OnClick="@(() => OnStarClick(buttonNumber) )"></MudIconButton>
+    }
+</div>

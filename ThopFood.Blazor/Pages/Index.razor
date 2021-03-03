@@ -6,7 +6,9 @@
     <MudItem xs="5">
 
         <RecipeTitleCardComponent Recipe="@_recipe" OnRecipeChange="@(()=> Console.WriteLine("Recipe has changed!"))" />
-        
+    </MudItem>
+    <MudItem xs="3">
+        <RecipeInformationCardComponent/>
     </MudItem>
 </MudGrid>
 

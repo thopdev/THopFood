@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\THopFood\ThopFood.Blazor\ThopFood.Blazor.csproj" />
+    <ProjectReference Include="..\ThopFood.Blazor\ThopFood.Blazor.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThopFood.Blazor", "ThopFood
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThopFood.Blazor.BUnit", "ThopFood.Blazor.BUnit\ThopFood.Blazor.BUnit.csproj", "{CA92428C-9DD8-4A51-8728-E827FB711148}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{16DA982D-4293-4BDD-8096-2AC7FADCE465}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{16DA982D-4293-4BDD-8096-2AC7FADCE465}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{54ED5076-D9A1-4F38-B6DC-50EF490A028A} = {16DA982D-4293-4BDD-8096-2AC7FADCE465}
+		{CA92428C-9DD8-4A51-8728-E827FB711148} = {16DA982D-4293-4BDD-8096-2AC7FADCE465}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {78805917-528F-4F74-AA4C-DB560FBB9E85}
