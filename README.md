@@ -1,4 +1,4 @@
-# THopFood
+# THopFood - The best Opensource Food Site
 This project will be developed on stream, [twitch](https://twitch.tv/thopdev)
 
 # Stream one:
