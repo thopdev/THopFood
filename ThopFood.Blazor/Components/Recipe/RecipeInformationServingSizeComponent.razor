@@ -1,0 +1,17 @@
+﻿<MudGrid>
+    <MudItem xs="6">
+        <MudText Typo="Typo.body1">Serving Size</MudText>
+    </MudItem>
+    <MudItem xs="6" Class="d-flex justify-start align-center">
+        @if (ServingSize != 1)
+        {
+            <MudIconButton Size="Size.Small" Icon="@Icons.Material.Outlined.Remove" OnClick="() => ServingSize--"/>
+        }
+        else
+        { 
+            <MudIcon Class="pl-4" Size="Size.Small" Icon="@Icons.Material.Outlined.Remove" Color="Color.Transparent" />
+        }
+        <MudText Typo="Typo.body1">@ServingSize</MudText>
+        <MudIconButton Size="Size.Small" Icon="@Icons.Material.Outlined.Add" OnClick="() => ServingSize++" />
+    </MudItem>
+</MudGrid>
