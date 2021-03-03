@@ -1,15 +1,20 @@
 ﻿@page "/"
+@using ThopFood.Blazor.Models
 
-
-<MudGrid Class="mt-6 py-2">
-    <MudItem xs="2"></MudItem>
-    <MudItem xs="5">
+<MudGrid Class="mt-6 py-2 mx-4">
+    <MudItem xs="1"></MudItem>
+    <MudItem xs="6">
 
         <RecipeTitleCardComponent Recipe="@_recipe" OnRecipeChange="@(()=> Console.WriteLine("Recipe has changed!"))" />
     </MudItem>
-    <MudItem xs="3">
-        <RecipeInformationCardComponent/>
+    <MudItem xs="4">
+        <RecipeInformationCardComponent />
     </MudItem>
+    <MudItem xs="6"><RecipeStepsCardComponent Steps="@Steps"></RecipeStepsCardComponent></MudItem>
 </MudGrid>
 
+@code
+{
+    public List<RecipeStepModel> Steps = new() { new() { Text = "First Step" }, new() { Text = "Second Step" }, new RecipeStepModel{Text = "Third row!"} };
+}
 
