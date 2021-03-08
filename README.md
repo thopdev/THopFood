@@ -1,6 +1,17 @@
 # THopFood - The best Opensource Food Site
 This project will be developed on stream, [twitch](https://twitch.tv/thopdev)
 
+# Stream two:
+Youtube: https://www.youtube.com/watch?v=vw7jqeQfHGY
+|Name|Issue|Branch|Youtube|
+|----|-----|------|-------|
+|Introduction|||[0:00](https://www.youtube.com/watch?v=EacftDhTbNs&t=0s)
+|Logo reveal|||[3:20](https://www.youtube.com/watch?v=EacftDhTbNs&t=200s)
+|Star rating|[Issue 6](https://github.com/thopdev/THopFood/issues/6)|[6-InformationCard](https://github.com/thopdev/THopFood/tree/6-InformationCard)|[7:00](https://www.youtube.com/watch?v=EacftDhTbNs&t=420s)
+|Recipe Serving Size|[Issue 6](https://github.com/thopdev/THopFood/issues/6)|[6-InformationCard](https://github.com/thopdev/THopFood/tree/6-InformationCard)|[1:10:12](https://www.youtube.com/watch?v=EacftDhTbNs&t=4212s)
+|Cook time|[Issue 6](https://github.com/thopdev/THopFood/issues/6)|[6-InformationCard](https://github.com/thopdev/THopFood/tree/6-InformationCard)|[1:41:49](https://www.youtube.com/watch?v=EacftDhTbNs&t=6109s)
+|Recipe Steps|[Issue 8](https://github.com/thopdev/THopFood/issues/8)|[6-InformationCard](https://github.com/thopdev/THopFood/tree/8-RecipeStep)|[1:41:49](https://www.youtube.com/watch?v=EacftDhTbNs&t=6109s)
+
 # Stream one:
 Youtube: https://www.youtube.com/watch?v=vw7jqeQfHGY
 |Name|Issue|Branch|Youtube|
