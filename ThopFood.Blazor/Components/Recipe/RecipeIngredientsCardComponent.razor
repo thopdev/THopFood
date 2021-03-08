@@ -1,0 +1,47 @@
+﻿<MudCard>
+    <MudCardHeader>
+        <CardHeaderContent><MudText Typo="Typo.h6">Ingredients</MudText></CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+
+        <MudSimpleTable Dense="true" Hover="true" Elevation="0" Square="true">
+            <tbody>
+
+            @foreach (var ingredient in Ingredients)
+            {
+                <tr>
+                    <td class="no-border">
+                        <MudText>@ingredient.Amount</MudText>
+                    </td>
+                    <td class="no-border">
+                        <MudText>@ingredient.Ingredient.Type</MudText>
+                    </td>
+                    <td class="no-border">
+                        <MudText Typo="Typo.body1">
+                            @ingredient.Ingredient.Name
+                        </MudText>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </MudSimpleTable>
+        <MudDivider DividerType="DividerType.Middle" Class="my-4"></MudDivider>
+        <MudText Class="mb-4" Typo="Typo.h6">Utensils</MudText>
+
+        <MudSimpleTable Dense="true" Hover="true" Elevation="0" Square="true">
+            <tbody>
+
+            @foreach (var utensil in Utensils)
+            {
+                <tr>
+                    <td class="no-border">
+                        <MudText Typo="Typo.body1">
+                            @utensil.Name
+                        </MudText>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </MudSimpleTable>
+    </MudCardContent>
+</MudCard>
