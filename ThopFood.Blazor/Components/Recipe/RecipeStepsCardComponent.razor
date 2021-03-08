@@ -1,21 +1,26 @@
 ﻿<MudCard>
+    <MudCardHeader>
+        <CardHeaderContent><MudText Typo="Typo.h6">Steps</MudText></CardHeaderContent>
+    </MudCardHeader>
+    
     <MudCardContent>
-        <MudSimpleTable Hover="true"  Elevation="0" Square="true" >
+
+        <MudSimpleTable Dense="true" Hover="true" Elevation="0" Square="true">
             <tbody>
 
-                @foreach (var model in Steps.Select((value, i) => new { i, value }))
-                {
-                    <tr>
-                        <td class="no-border">
-                            <MudText Typo="Typo.body1">@(model.i + 1).</MudText>
-                        </td>
-                        <td class="no-border">
-                            <MudText Typo="Typo.body1">
-                                @model.value.Text
-                            </MudText>
-                        </td>
-                    </tr>
-                }
+            @foreach (var model in Steps.Select((value, i) => new {i, value}))
+            {
+                <tr>
+                    <td class="no-border">
+                        <MudText Typo="Typo.body1">@(model.i + 1).</MudText>
+                    </td>
+                    <td class="no-border">
+                        <MudText Typo="Typo.body1">
+                            @model.value.Text
+                        </MudText>
+                    </td>
+                </tr>
+            }
             </tbody>
         </MudSimpleTable>
     </MudCardContent>
