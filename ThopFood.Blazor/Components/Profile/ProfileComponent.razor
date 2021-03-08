@@ -1,0 +1,47 @@
+﻿<MudCard>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="@Typo.h6">@Profile.Name</MudText>
+        </CardHeaderContent>
+        <CardHeaderActions>
+            @if (Profile.Following)
+            {
+                <MudButton Variant="Variant.Outlined" Size="Size.Small" Color="Color.Secondary" OnClick="FollowButton">Following</MudButton>
+
+            }
+            else
+            {
+                <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="FollowButton">Follow</MudButton>
+            }
+        </CardHeaderActions>
+    </MudCardHeader>
+
+    <MudCardContent>
+
+        <MudGrid Justify="Justify.SpaceAround" Spacing="0">
+            <MudItem>
+                <MudAvatar Class="extra-large" Color="Profile.Color">@Profile.Name.FirstOrDefault()</MudAvatar>
+            </MudItem>
+            <MudItem Class="d-flex align-center">
+                <MudText Typo="@Typo.h6">@Profile.UserName</MudText>
+
+            </MudItem>
+            <MudDivider Vertical="true" FlexItem="true"/>
+
+            <MudItem xs="6" Class="d-flex  justify-center align-center">
+                <MudGrid Justify="Justify.SpaceAround" Spacing="0">
+                    <MudItem>
+                        <MudText Typo="Typo.h6">@Profile.Followers Followers</MudText>
+                    </MudItem>
+                    <MudItem>
+                        <MudRating Color="Color.Secondary" ReadOnly="true" Size="Size.Large" SelectedValue="@Profile.Rating"/>
+                    </MudItem>
+                    <MudItem>
+                        <MudText Typo="Typo.body1">Out of @Profile.RatingCount reviews</MudText>
+                    </MudItem>
+                </MudGrid>
+            </MudItem>
+        </MudGrid>
+    </MudCardContent>
+
+</MudCard>

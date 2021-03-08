@@ -1,4 +1,10 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+.extra-large {
+    width: 102px !important;
+    height: 102px !important;
+    font-size: 2.5rem !important;
+}
+
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
