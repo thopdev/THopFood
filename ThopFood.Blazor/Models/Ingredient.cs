@@ -1,4 +1,6 @@
-namespace ThopFood.Blazor.Components.Recipe
+using ThopFood.Blazor.Enums;
+
+namespace ThopFood.Blazor.Models
 {
     public class Ingredient
     {
