@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using ThopFood.Blazor.Models;
-using ThopFood.Blazor.Services;
+using ThopFood.Blazor.Services.EndpointServices;
 
 namespace ThopFood.Blazor.Pages
 {

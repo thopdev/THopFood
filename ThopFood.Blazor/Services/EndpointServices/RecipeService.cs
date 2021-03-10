@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using ThopFood.Blazor.Models;
 using ThopFood.Shared.Dtos.Recipes;
 
-namespace ThopFood.Blazor.Services
+namespace ThopFood.Blazor.Services.EndpointServices
 {
     public interface IRecipeService
     {
@@ -26,8 +26,6 @@ namespace ThopFood.Blazor.Services
         public async Task<RecipeModel> GetRecipeById(int id)
         {
             var recipe = await _httpService.GetAsync<RecipeDto>(ControllerEndpoint, id);
-
-            Console.WriteLine(JsonSerializer.Serialize(recipe));
 
             return new RecipeModel
             {
