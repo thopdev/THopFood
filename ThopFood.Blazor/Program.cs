@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 using ThopFood.Blazor.Services;
+using ThopFood.Blazor.Services.EndpointServices;
 
 namespace ThopFood.Blazor
 {
@@ -33,6 +34,7 @@ namespace ThopFood.Blazor
             services.AddScoped<IJsonService, JsonService>();
 
             services.AddScoped<IRecipeService, RecipeHttpService>();
+            services.AddScoped<IUserProfileService, UserProfileHttpService>();
         }
     }
 }
