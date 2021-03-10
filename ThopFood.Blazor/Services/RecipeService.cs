@@ -1,16 +1,47 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Text.Json;
+using System.Threading.Tasks;
 using ThopFood.Blazor.Models;
+using ThopFood.Shared.Dtos.Recipes;
 
 namespace ThopFood.Blazor.Services
 {
     public interface IRecipeService
     {
-        Task<RecipeModel> GetRecipeById(string id);
+        Task<RecipeModel> GetRecipeById(int id);
+    }
+
+    public class RecipeHttpService : IRecipeService
+    {
+        private const string ControllerEndpoint = "recipe";
+
+        private readonly IHttpService _httpService;
+
+        public RecipeHttpService(IHttpService httpService)
+        {
+            _httpService = httpService;
+        }
+
+
+        public async Task<RecipeModel> GetRecipeById(int id)
+        {
+            var recipe = await _httpService.GetAsync<RecipeDto>(ControllerEndpoint, id);
+
+            Console.WriteLine(JsonSerializer.Serialize(recipe));
+
+            return new RecipeModel
+            {
+                Title = recipe.Title,
+                Description = recipe.Description,
+                Favorite = recipe.Favorite,
+                ImageUrl = recipe.ImageUrl
+            };
+        }
     }
 
     public class RecipeServiceFaker : IRecipeService
     {
-        public async Task<RecipeModel> GetRecipeById(string id)
+        public async Task<RecipeModel> GetRecipeById(int id)
         {
             await Task.Delay(1000);
             return new RecipeModel

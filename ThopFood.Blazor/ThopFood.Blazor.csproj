@@ -16,4 +16,9 @@
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\ThopFood.Shared\ThopFood.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
