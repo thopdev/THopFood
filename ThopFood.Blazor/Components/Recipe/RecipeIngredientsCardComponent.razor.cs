@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using ThopFood.Blazor.Enums;
+using ThopFood.Blazor.Models;
 
 namespace ThopFood.Blazor.Components.Recipe
 {
