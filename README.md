@@ -1,6 +1,5 @@
-# THopFood - The best Opensource Food Site
+![Thop-Food-Logo-B7_full](https://user-images.githubusercontent.com/9268249/110659778-30aa3900-81c3-11eb-9f26-ec710833cece.png)
 This project will be developed on stream, [twitch](https://twitch.tv/thopdev)
-
 # Stream two:
 Youtube: https://www.youtube.com/watch?v=vw7jqeQfHGY
 |Name|Issue|Branch|Youtube|
