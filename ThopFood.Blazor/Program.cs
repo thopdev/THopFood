@@ -1,6 +1,7 @@
 #define Faker
 using System;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,16 +17,22 @@ namespace ThopFood.Blazor
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddMudServices();
-
-#if Faker
-            builder.Services.AddScoped<IRecipeService, RecipeServiceFaker>();
-#else
-
-#endif
+            RegisterServices(builder.Services);
 
             await builder.Build().RunAsync();
+        }
+
+        public static void RegisterServices(IServiceCollection services)
+        {
+            services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44377/api") });
+            services.AddMudServices();
+
+            services.AddScoped<IHttpService, HttpService>();
+
+            services.AddSingleton(new JsonSerializerOptions() {PropertyNameCaseInsensitive = true});
+            services.AddScoped<IJsonService, JsonService>();
+
+            services.AddScoped<IRecipeService, RecipeHttpService>();
         }
     }
 }

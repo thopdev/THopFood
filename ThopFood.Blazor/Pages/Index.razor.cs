@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using ThopFood.Blazor.Models;
 using ThopFood.Blazor.Services;
@@ -14,7 +15,7 @@ namespace ThopFood.Blazor.Pages
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            _recipe = await RecipeService.GetRecipeById("");
+            _recipe = await RecipeService.GetRecipeById(5);
         }
     }
 }
