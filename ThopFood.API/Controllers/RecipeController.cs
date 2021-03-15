@@ -19,7 +19,7 @@ namespace ThopFood.API.Controllers
                 Description = "Very nice food",
                 Favorite = true,
                 ImageUrl = "https://scx1.b-cdn.net/csz/news/800a/2016/howcuttingdo.jpg",
-                IngredientIds = new[] {5, 4},
+                Ingredients = new RecipeIngredientDto[] {new RecipeIngredientDto { Amount = 5, Id = 45}, new RecipeIngredientDto { Amount = 53, Id = 45}},
                 OwnerId = 5,
                 Steps = new[] {new RecipeStepDto {Text = "Step one"}},
                 UtensilIds = new[] {1, 2}

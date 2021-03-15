@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 using ThopFood.Blazor.Services;
 using ThopFood.Blazor.Services.EndpointServices;
+using ThopFood.Blazor.Services.EndpointServices.Interfaces;
 
 namespace ThopFood.Blazor
 {
@@ -35,6 +36,7 @@ namespace ThopFood.Blazor
 
             services.AddScoped<IRecipeService, RecipeHttpService>();
             services.AddScoped<IUserProfileService, UserProfileHttpService>();
+            services.AddScoped<IIngredientService, IngredientHttpService>();
         }
     }
 }

@@ -6,5 +6,6 @@
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public bool Favorite { get; set; }
+        public RecipeIngredientId[] RecipeIngredientIds { get; set; }
     }
 }

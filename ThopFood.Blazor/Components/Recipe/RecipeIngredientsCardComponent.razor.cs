@@ -1,21 +1,50 @@
+using System;
 using System.Collections.Generic;
-using ThopFood.Blazor.Enums;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using ThopFood.Blazor.Models;
+using ThopFood.Blazor.Services.EndpointServices.Interfaces;
 
 namespace ThopFood.Blazor.Components.Recipe
 {
     public partial class RecipeIngredientsCardComponent
     {
-        public List<RecipeIngredient> Ingredients { get; set; } = new List<RecipeIngredient>
-        {
-            new RecipeIngredient
-                {Ingredient = new Ingredient {Name = "Garlic", Type = IngredientType.Amount}, Amount = 5},
-            new RecipeIngredient
-                {Ingredient = new Ingredient {Name = "Water", Type = IngredientType.Volume}, Amount = 1000},
-            new RecipeIngredient
-                {Ingredient = new Ingredient {Name = "Flour", Type = IngredientType.Weight}, Amount = 1000000},
+        [Parameter]
+        public RecipeIngredientId[] IngredientIds { get; set; }
 
-        };
+        public RecipeIngredient[] Ingredients { get; set; }
+
+        [Inject] public IIngredientService IngredientService { get; set; }
+
+        protected override async Task OnInitializedAsync()
+        {
+
+            if (IngredientIds == null)
+            {
+                throw new ArgumentNullException($"Ingredient list cannot be null in {nameof(RecipeIngredientsCardComponent)}");
+            }
+
+            Console.WriteLine("Ingredients are not null");
+            Console.WriteLine(IngredientIds.Length);
+            var ingredientTasks = IngredientIds.Select(GetIngredientWithAmount);
+
+            Ingredients = await Task.WhenAll(ingredientTasks);
+
+            await base.OnInitializedAsync();
+        }
+
+        public async Task<RecipeIngredient> GetIngredientWithAmount(RecipeIngredientId recipeIngredient)
+        {
+            Console.WriteLine("test" + recipeIngredient.IngredientId);
+            var ingredient = await IngredientService.GetIngredientById(recipeIngredient.IngredientId);
+            return new RecipeIngredient
+            {
+                Ingredient = ingredient,
+                Amount = recipeIngredient.Amount
+            };
+        }
+
 
         public List<RecipeUtensil> Utensils { get; set; } = new List<RecipeUtensil>(new List<RecipeUtensil>
         {

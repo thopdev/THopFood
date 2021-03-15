@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ThopFood.Blazor.Models;
@@ -32,7 +33,12 @@ namespace ThopFood.Blazor.Services.EndpointServices
                 Title = recipe.Title,
                 Description = recipe.Description,
                 Favorite = recipe.Favorite,
-                ImageUrl = recipe.ImageUrl
+                ImageUrl = recipe.ImageUrl,
+                RecipeIngredientIds = recipe.Ingredients?.Select(x => new RecipeIngredientId
+                {
+                    Amount = x.Amount,
+                    IngredientId = x.Id
+                }).ToArray() ?? Array.Empty<RecipeIngredientId>()
             };
         }
     }
