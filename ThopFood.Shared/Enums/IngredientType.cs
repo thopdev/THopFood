@@ -1,4 +1,4 @@
-namespace ThopFood.Blazor.Enums
+namespace ThopFood.Shared.Enums
 {
     public enum IngredientType
     {

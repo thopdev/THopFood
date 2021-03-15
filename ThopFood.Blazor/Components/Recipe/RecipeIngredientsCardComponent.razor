@@ -6,22 +6,24 @@
 
         <MudSimpleTable Dense="true" Hover="true" Elevation="0" Square="true">
             <tbody>
-
-            @foreach (var ingredient in Ingredients)
+            @if (Ingredients != null)
             {
-                <tr>
-                    <td class="no-border">
-                        <MudText>@ingredient.Amount</MudText>
-                    </td>
-                    <td class="no-border">
-                        <MudText>@ingredient.Ingredient.Type</MudText>
-                    </td>
-                    <td class="no-border">
-                        <MudText Typo="Typo.body1">
-                            @ingredient.Ingredient.Name
-                        </MudText>
-                    </td>
-                </tr>
+                @foreach (var ingredient in Ingredients)
+                {
+                    <tr>
+                        <td class="no-border">
+                            <MudText>@ingredient.Amount</MudText>
+                        </td>
+                        <td class="no-border">
+                            <MudText>@ingredient.Ingredient.Type</MudText>
+                        </td>
+                        <td class="no-border">
+                            <MudText Typo="Typo.body1">
+                                @ingredient.Ingredient.Name
+                            </MudText>
+                        </td>
+                    </tr>
+                }
             }
             </tbody>
         </MudSimpleTable>

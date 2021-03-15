@@ -1,8 +1,8 @@
-using ThopFood.Shared.Enums;
+﻿using ThopFood.Shared.Enums;
 
-namespace ThopFood.Blazor.Models
+namespace ThopFood.Shared.Dtos.Ingredients
 {
-    public class Ingredient
+    public class IngredientDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

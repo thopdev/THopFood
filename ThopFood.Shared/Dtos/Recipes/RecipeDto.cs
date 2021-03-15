@@ -13,12 +13,17 @@ namespace ThopFood.Shared.Dtos.Recipes
 
         public bool Favorite { get; set; }
 
-        public int[] IngredientIds { get; set; }
-
         public int[] UtensilIds { get; set; }
 
         public int OwnerId { get; set; }
 
         public RecipeStepDto[] Steps { get; set; }
+        public RecipeIngredientDto[] Ingredients { get; set; }
+    }
+
+    public class RecipeIngredientDto
+    {
+        public int Id { get; set; }
+        public double Amount { get; set; }
     }
 }
