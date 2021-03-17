@@ -2,7 +2,7 @@
 
 namespace ThopFood.API.Migrations
 {
-    public partial class RecipeEntity : Migration
+    public partial class IngredientAndRecipeEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,23 +39,17 @@ namespace ThopFood.API.Migrations
                 defaultValue: 0);
 
             migrationBuilder.CreateTable(
-                name: "RecipeIngredients",
+                name: "Ingredient",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Amount = table.Column<double>(type: "float", nullable: false),
-                    RecipeId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RecipeIngredients", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RecipeIngredients_Recipes_RecipeId",
-                        column: x => x.RecipeId,
-                        principalTable: "Recipes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_Ingredient", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,7 +76,8 @@ namespace ThopFood.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,6 +94,31 @@ namespace ThopFood.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Utensils", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RecipeIngredients",
+                columns: table => new
+                {
+                    RecipeId = table.Column<int>(type: "int", nullable: false),
+                    IngredientId = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecipeIngredients", x => new { x.RecipeId, x.IngredientId });
+                    table.ForeignKey(
+                        name: "FK_RecipeIngredients_Ingredient_IngredientId",
+                        column: x => x.IngredientId,
+                        principalTable: "Ingredient",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RecipeIngredients_Recipes_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -156,9 +176,9 @@ namespace ThopFood.API.Migrations
                 column: "OwnerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecipeIngredients_RecipeId",
+                name: "IX_RecipeIngredients_IngredientId",
                 table: "RecipeIngredients",
-                column: "RecipeId");
+                column: "IngredientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RecipeRatings_UserId",
@@ -200,6 +220,9 @@ namespace ThopFood.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "RecipeUtensil");
+
+            migrationBuilder.DropTable(
+                name: "Ingredient");
 
             migrationBuilder.DropTable(
                 name: "Users");

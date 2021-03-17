@@ -9,8 +9,8 @@ using ThopFood.API.Data;
 namespace ThopFood.API.Migrations
 {
     [DbContext(typeof(ApplicationDatabaseContext))]
-    [Migration("20210317184319_RecipeEntity")]
-    partial class RecipeEntity
+    [Migration("20210317195118_IngredientEntity")]
+    partial class IngredientEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,6 +33,24 @@ namespace ThopFood.API.Migrations
                     b.HasIndex("UtensilsId");
 
                     b.ToTable("RecipeUtensil");
+                });
+
+            modelBuilder.Entity("ThopFood.API.Data.Entities.Ingredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("ThopFood.API.Data.Entities.Recipe", b =>
@@ -75,20 +93,18 @@ namespace ThopFood.API.Migrations
 
             modelBuilder.Entity("ThopFood.API.Data.Entities.RecipeIngredient", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
 
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("int");
+                    b.HasKey("RecipeId", "IngredientId");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("IngredientId");
 
                     b.ToTable("RecipeIngredients");
                 });
@@ -135,6 +151,9 @@ namespace ThopFood.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -180,11 +199,19 @@ namespace ThopFood.API.Migrations
 
             modelBuilder.Entity("ThopFood.API.Data.Entities.RecipeIngredient", b =>
                 {
+                    b.HasOne("ThopFood.API.Data.Entities.Ingredient", "Ingredient")
+                        .WithMany()
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ThopFood.API.Data.Entities.Recipe", "Recipe")
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Ingredient");
 
                     b.Navigation("Recipe");
                 });
