@@ -14,7 +14,7 @@ namespace ThopFood.Blazor.Pages
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-            _recipe = await RecipeService.GetRecipeById(5);
+            _recipe = await RecipeService.GetRecipeById(2);
         }
     }
 }

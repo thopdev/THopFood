@@ -6,7 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ThopFood.API.Data;
-using EnvironmentName = Microsoft.AspNetCore.Hosting.EnvironmentName;
+using ThopFood.API.Repositories;
+using ThopFood.API.Repositories.Interfaces;
 
 namespace ThopFood.API
 {
@@ -40,6 +41,8 @@ namespace ThopFood.API
             });
 
             services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddScoped<IRecipeRepository, RecipeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
