@@ -39,7 +39,7 @@ namespace ThopFood.API.Controllers
                 Title = recipe.Title,
                 Description = recipe.Description,
                 ImageUrl = recipe.ImageUrl,
-                Ingredients = recipe.Ingredients.Select(x => new RecipeIngredientDto{Amount = x.Amount, Id = x.RecipeId}).ToArray(),
+                Ingredients = recipe.Ingredients.Select(x => new RecipeIngredientDto{Amount = x.Amount, Id = x.IngredientId}).ToArray(),
                 OwnerId = recipe.OwnerId,
                 Steps = recipe.Steps.Select(x => new RecipeStepDto{Text = x.Id.ToString()}).ToArray(),
             });

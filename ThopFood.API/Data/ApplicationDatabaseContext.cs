@@ -15,6 +15,7 @@ namespace ThopFood.API.Data
         public DbSet<RecipeStep> RecipeSteps { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Utensil> Utensils { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,6 +27,7 @@ namespace ThopFood.API.Data
             base.OnModelCreating(modelBuilder);
             
             modelBuilder.Entity<RecipeRating>().HasKey(rr => new {rr.RecipeId, rr.UserId});
+            modelBuilder.Entity<RecipeIngredient>().HasKey(ri => new {ri.RecipeId, ri.IngredientId});
 
             modelBuilder.Entity<Recipe>().HasOne(x => x.Owner).WithMany().OnDelete(DeleteBehavior.NoAction);
         }
