@@ -28,7 +28,7 @@ namespace ThopFood.API
                 options.AddPolicy(name: "all",
                     builder =>
                     {
-                        builder.WithOrigins("*");
+                        builder.WithOrigins("*").AllowAnyHeader();
                     });
             });
 

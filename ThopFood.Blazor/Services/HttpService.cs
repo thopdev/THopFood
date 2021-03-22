@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace ThopFood.Blazor.Services
@@ -7,6 +8,7 @@ namespace ThopFood.Blazor.Services
     public interface IHttpService
     {
         Task<T> GetAsync<T>(string controller, int id);
+        Task<T> PostAsync<T>(string controller, object value);
     }
 
     public class HttpService : IHttpService
@@ -31,6 +33,14 @@ namespace ThopFood.Blazor.Services
             var uri = new Uri(_httpClient.BaseAddress,  $"api/{controller}/{id}");
             var response = await _httpClient.GetAsync(uri);
             return await ProcessRequestAsync<T>(response);
+        }
+
+        public async Task<T> PostAsync<T>(string controller, object value)
+        {
+            var uri = new Uri(_httpClient.BaseAddress, $"api/{controller}");
+            var response = await _httpClient.PostAsJsonAsync(uri, value);
+            return await ProcessRequestAsync<T>(response);
+
         }
 
         private  async Task<T> ProcessRequestAsync<T>(HttpResponseMessage response)

@@ -1,0 +1,17 @@
+﻿@page "/recipe/create"
+
+<MudTabs Elevation="2"  Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+    <MudTabPanel BadgeColor="Color.Primary" Text="Title">
+        <CreateRecipeTitleComponent OnSubmit="OnTitleSubmit"/>
+    </MudTabPanel>
+    <MudTabPanel Disabled="true" Text="Information">
+        <div>Information</div>
+    </MudTabPanel>
+    <MudTabPanel Disabled="true" Text="Steps">
+        <div>Steps</div>
+    </MudTabPanel>
+    <MudTabPanel Disabled="true" Text="Ingredients">
+        <div>Ingredient</div>
+    </MudTabPanel>
+
+</MudTabs>
