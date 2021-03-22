@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ThopFood.Blazor.Models;
+using ThopFood.Shared.Dtos.EntityCreated;
 using ThopFood.Shared.Dtos.Recipes;
 
 namespace ThopFood.Blazor.Services.EndpointServices
@@ -10,6 +11,7 @@ namespace ThopFood.Blazor.Services.EndpointServices
     public interface IRecipeService
     {
         Task<RecipeModel> GetRecipeById(int id);
+        Task<int> CreateRecipeAsync(RecipeModel recipe);
     }
 
     public class RecipeHttpService : IRecipeService
@@ -41,6 +43,16 @@ namespace ThopFood.Blazor.Services.EndpointServices
                 }).ToArray() ?? Array.Empty<RecipeIngredientId>()
             };
         }
+
+        public async Task<int> CreateRecipeAsync(RecipeModel recipe)
+        {
+            var idModel = await _httpService.PostAsync<EntityCreateDto>(ControllerEndpoint, new NewRecipeDto
+            {
+                Title = recipe.Title, Description = recipe.Description, ImageUrl = recipe.ImageUrl
+            });
+            return idModel.Id;
+        }
+
     }
 
     public class RecipeServiceFaker : IRecipeService
@@ -54,6 +66,11 @@ namespace ThopFood.Blazor.Services.EndpointServices
                 Description = "Very nice food. It smells amazing!!!",
                 ImageUrl = "https://scx1.b-cdn.net/csz/news/800a/2016/howcuttingdo.jpg"
             };
+        }
+
+        public Task<int> CreateRecipeAsync(RecipeModel recipe)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,0 +1,15 @@
+﻿<EditForm Model="@_model" OnValidSubmit="() => OnSubmit.InvokeAsync(_model)">
+    <DataAnnotationsValidator />
+    <MudTextField Label="Title" HelperText="The title of your recipe"
+                  @bind-Value="_model.Title" For="@(() => _model.Title)" />
+    
+    <MudTextField Label="Description" HelperText="A small description about your recipe"
+                  @bind-Value="_model.Description" For="@(() => _model.Description)" />
+    
+    <MudTextField Label="ImageUrl" HelperText="A image of the recipe"
+                  @bind-Value="_model.ImageUrl" For="@(() => _model.ImageUrl)" />
+    
+    <MudCardActions>
+        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Next</MudButton>
+    </MudCardActions>
+</EditForm>
