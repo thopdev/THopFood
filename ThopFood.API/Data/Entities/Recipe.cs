@@ -24,6 +24,5 @@ namespace ThopFood.API.Data.Entities
         public virtual ICollection<RecipeStep> Steps { get; set; }
 
         public virtual ICollection<Utensil> Utensils { get; set; }
-
     }
 }
