@@ -1,17 +1,18 @@
 ﻿@page "/recipe/create"
 
-<MudTabs Elevation="2"  Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
-    <MudTabPanel BadgeColor="Color.Primary" Text="Title">
-        <CreateRecipeTitleComponent OnSubmit="OnTitleSubmit"/>
-    </MudTabPanel>
-    <MudTabPanel Disabled="true" Text="Information">
-        <div>Information</div>
-    </MudTabPanel>
-    <MudTabPanel Disabled="true" Text="Steps">
-        <div>Steps</div>
-    </MudTabPanel>
-    <MudTabPanel Disabled="true" Text="Ingredients">
-        <div>Ingredient</div>
-    </MudTabPanel>
-
-</MudTabs>
+<CascadingValue Value="@Recipe">
+    <MudTabs KeepPanelsAlive="true" @ref="_tabs" Elevation="2" Rounded="true" ApplyEffectsToContainer="true" PanelClass="pa-6">
+        <MudTabPanel @ref="_titleTab" BadgeColor="Color.Primary" Text="Title">
+            <CreateRecipeTitleComponent OnSubmit="OnUpdate" />
+        </MudTabPanel>
+        <MudTabPanel @ref="_descriptionTab" Disabled="@((int)_status < (int)RecipeCreationStatus.Description)" Text="Information">
+            <CreateRecipeDescriptionComponent OnSubmit="OnUpdate" />
+        </MudTabPanel>
+        <MudTabPanel @ref="_stepsTab" Disabled="@((int)_status < (int)RecipeCreationStatus.Steps)" Text="Steps">
+            <div>Steps</div>
+        </MudTabPanel>
+        <MudTabPanel @ref="_ingredientsTab" Disabled="@((int)_status < (int)RecipeCreationStatus.Ingredient)" Text="Ingredients">
+            <div>Ingredient</div>
+        </MudTabPanel>
+    </MudTabs>
+</CascadingValue>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using AutoMapper;
 using ThopFood.Blazor.Models;
 using ThopFood.Shared.Dtos.EntityCreated;
 using ThopFood.Shared.Dtos.Recipes;
@@ -12,6 +14,7 @@ namespace ThopFood.Blazor.Services.EndpointServices
     {
         Task<RecipeModel> GetRecipeById(int id);
         Task<int> CreateRecipeAsync(RecipeModel recipe);
+        Task UpdateRecipeAsync(RecipeModel recipe);
     }
 
     public class RecipeHttpService : IRecipeService
@@ -19,12 +22,13 @@ namespace ThopFood.Blazor.Services.EndpointServices
         private const string ControllerEndpoint = "recipe";
 
         private readonly IHttpService _httpService;
+        private readonly IMapper _mapper;
 
-        public RecipeHttpService(IHttpService httpService)
+        public RecipeHttpService(IHttpService httpService, IMapper mapper)
         {
             _httpService = httpService;
+            _mapper = mapper;
         }
-
 
         public async Task<RecipeModel> GetRecipeById(int id)
         {
@@ -32,6 +36,7 @@ namespace ThopFood.Blazor.Services.EndpointServices
 
             return new RecipeModel
             {
+                Id = recipe.Id,
                 Title = recipe.Title,
                 Description = recipe.Description,
                 Favorite = recipe.Favorite,
@@ -46,31 +51,17 @@ namespace ThopFood.Blazor.Services.EndpointServices
 
         public async Task<int> CreateRecipeAsync(RecipeModel recipe)
         {
-            var idModel = await _httpService.PostAsync<EntityCreateDto>(ControllerEndpoint, new NewRecipeDto
-            {
-                Title = recipe.Title, Description = recipe.Description, ImageUrl = recipe.ImageUrl
-            });
+            var dto = _mapper.Map<NewRecipeDto>(recipe);
+            var idModel = await _httpService.PostAsync<EntityCreateDto>(ControllerEndpoint, dto);
             return idModel.Id;
         }
 
-    }
-
-    public class RecipeServiceFaker : IRecipeService
-    {
-        public async Task<RecipeModel> GetRecipeById(int id)
+        public async Task UpdateRecipeAsync(RecipeModel recipe)
         {
-            await Task.Delay(1000);
-            return new RecipeModel
-            {
-                Title = "Donuts and more!",
-                Description = "Very nice food. It smells amazing!!!",
-                ImageUrl = "https://scx1.b-cdn.net/csz/news/800a/2016/howcuttingdo.jpg"
-            };
-        }
+            var id = recipe.Id;
+            var dto = _mapper.Map<UpdateRecipeDto>(recipe);
 
-        public Task<int> CreateRecipeAsync(RecipeModel recipe)
-        {
-            throw new NotImplementedException();
+            await _httpService.PutAsync(ControllerEndpoint, id, dto);
         }
     }
 }

@@ -37,6 +37,7 @@ namespace ThopFood.Blazor
             services.AddScoped<IRecipeService, RecipeHttpService>();
             services.AddScoped<IUserProfileService, UserProfileHttpService>();
             services.AddScoped<IIngredientService, IngredientHttpService>();
+            services.AddAutoMapper(typeof(Program).Assembly);
         }
     }
 }
