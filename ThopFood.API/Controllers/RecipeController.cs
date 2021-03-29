@@ -54,5 +54,20 @@ namespace ThopFood.API.Controllers
          
             return CreatedAtAction(nameof(Index), new {id}, new EntityCreateDto(id));
         }
+
+        [HttpPut("{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateRecipeDto recipeDto, CancellationToken cancellationToken)
+        {
+            var updated = await _recipeRepository.UpdateRecipeAsync(id, recipeDto, cancellationToken);
+
+            if (updated)
+            {
+                return Ok();
+            }
+
+            return NotFound();
+        }
     }
 }

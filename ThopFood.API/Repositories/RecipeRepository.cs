@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using ThopFood.API.Data;
 using ThopFood.API.Data.Entities;
 using ThopFood.API.Repositories.Interfaces;
@@ -10,10 +11,12 @@ namespace ThopFood.API.Repositories
     public class RecipeRepository : IRecipeRepository
     {
         private readonly ApplicationDatabaseContext _databaseContext;
+        private readonly IMapper _mapper;
 
-        public RecipeRepository(ApplicationDatabaseContext databaseContext)
+        public RecipeRepository(ApplicationDatabaseContext databaseContext, IMapper mapper)
         {
             _databaseContext = databaseContext;
+            _mapper = mapper;
         }
 
         public async Task<Recipe> GetRecipeByIdAsync(int id)
@@ -39,6 +42,21 @@ namespace ThopFood.API.Repositories
             await _databaseContext.SaveChangesAsync(cancellationToken);
 
             return result.Entity.Id;
+        }
+
+        public async Task<bool> UpdateRecipeAsync(int id, UpdateRecipeDto dto, CancellationToken cancellationToken)
+        {
+            var entity = await GetRecipeByIdAsync(id);
+
+            if (entity == null)
+            {
+                return false;
+            }
+            _mapper.Map<Recipe>(dto);
+
+            await _databaseContext.SaveChangesAsync(cancellationToken);
+
+            return true;
         }
     }
 }

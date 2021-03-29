@@ -9,5 +9,6 @@ namespace ThopFood.API.Repositories.Interfaces
     {
         Task<Recipe> GetRecipeByIdAsync(int id);
         Task<int> CreateRecipeAsync(NewRecipeDto dto, CancellationToken cancellationToken);
+        Task<bool> UpdateRecipeAsync(int id, UpdateRecipeDto dto, CancellationToken cancellationToken);
     }
 }

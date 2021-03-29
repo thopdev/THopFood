@@ -28,7 +28,7 @@ namespace ThopFood.API
                 options.AddPolicy(name: "all",
                     builder =>
                     {
-                        builder.WithOrigins("*").AllowAnyHeader();
+                        builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
                     });
             });
 
@@ -44,6 +44,7 @@ namespace ThopFood.API
 
             services.AddScoped<IRecipeRepository, RecipeRepository>();
             services.AddScoped<IIngredientRepository, IngredientRepository>();
+            services.AddAutoMapper(typeof(Program).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

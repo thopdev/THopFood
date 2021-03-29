@@ -1,0 +1,18 @@
+﻿<EditForm Model="@_model" OnValidSubmit="() => OnSubmit.InvokeAsync(_model)">
+    <DataAnnotationsValidator />
+    <MudTextField  AutoFocus="true" Label="Default serving size" HelperText="The default serving size of this recipe"
+                  @bind-Value="_model.DefaultServingSize" For="@(() => _model.DefaultServingSize)" />
+    
+    <MudTextField Label="Preperation time" HelperText="The number of minutes required for the preperation"
+                  @bind-Value="_model.PrepTime" For="@(() => _model.PrepTime)" />
+    
+    <MudTextField Label="Cook time" HelperText="The number of minutes required for the cook time"
+                  @bind-Value="_model.CookTime" For="@(() => _model.CookTime)" />
+    
+    <MudTextField Label="Total time" HelperText="The total number of minutes required for this recipe"
+                  @bind-Value="_model.TotalTime" For="@(() => _model.TotalTime)" />
+
+    <MudCardActions>
+        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Next</MudButton>
+    </MudCardActions>
+</EditForm>
