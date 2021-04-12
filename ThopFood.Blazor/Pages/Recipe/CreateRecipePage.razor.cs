@@ -6,6 +6,7 @@ using MudBlazor;
 using ThopFood.Blazor.Models;
 using ThopFood.Blazor.Models.Recipe.Create;
 using ThopFood.Blazor.Services.EndpointServices;
+using ThopFood.Blazor.Services.EndpointServices.Interfaces;
 
 namespace ThopFood.Blazor.Pages.Recipe
 {
@@ -15,6 +16,7 @@ namespace ThopFood.Blazor.Pages.Recipe
 
         [Inject] public IMapper Mapper { get; set; }
         [Inject] public IRecipeService RecipeService { get; set; }
+        [Inject] public IRecipeStepHttpService RecipeStepHttpService { get; set; }
 
         private MudTabs _tabs;
         private MudTabPanel _titleTab;
@@ -64,6 +66,13 @@ namespace ThopFood.Blazor.Pages.Recipe
             }
 
              await  RecipeService.UpdateRecipeAsync(Recipe);
+        }
+
+        public async Task OnNewRecipeStep(CreateRecipeStep step)
+        {
+            RecipeStepHttpService.CreateAsync(Recipe.Id, step);
+            
+
         }
 
         public void UpdateTabs(object obj)

@@ -8,8 +8,8 @@
         <MudTabPanel @ref="_descriptionTab" Disabled="@((int)_status < (int)RecipeCreationStatus.Description)" Text="Information">
             <CreateRecipeDescriptionComponent OnSubmit="OnUpdate" />
         </MudTabPanel>
-        <MudTabPanel @ref="_stepsTab" Disabled="@((int)_status < (int)RecipeCreationStatus.Steps)" Text="Steps">
-            <div>Steps</div>
+        <MudTabPanel @ref="_stepsTab"  Text="Steps">
+            <CreateRecipeStepComponent OnNewRecipe="@OnNewRecipeStep"/>
         </MudTabPanel>
         <MudTabPanel @ref="_ingredientsTab" Disabled="@((int)_status < (int)RecipeCreationStatus.Ingredient)" Text="Ingredients">
             <div>Ingredient</div>
