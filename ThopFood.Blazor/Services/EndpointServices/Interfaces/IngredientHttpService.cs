@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using ThopFood.Blazor.Models;
-using ThopFood.Blazor.Services.EndpointServices.Interfaces;
 using ThopFood.Shared.Dtos.Ingredients;
 
-namespace ThopFood.Blazor.Services.EndpointServices
+namespace ThopFood.Blazor.Services.EndpointServices.Interfaces
 {
     public class IngredientHttpService : IIngredientService
     {

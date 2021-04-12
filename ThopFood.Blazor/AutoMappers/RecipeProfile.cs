@@ -2,6 +2,7 @@
 using ThopFood.Blazor.Models;
 using ThopFood.Blazor.Models.Recipe.Create;
 using ThopFood.Shared.Dtos.Recipes;
+using ThopFood.Shared.Requests.RecipeStep;
 
 namespace ThopFood.Blazor.AutoMappers
 {
@@ -13,6 +14,8 @@ namespace ThopFood.Blazor.AutoMappers
             CreateMap<CreateRecipeDescription, RecipeModel>();
             CreateMap<RecipeModel, UpdateRecipeDto>();
             CreateMap<RecipeModel, NewRecipeDto>();
+
+            CreateMap<CreateRecipeStep, CreateRecipeStepRequest>();
 
         }
     }

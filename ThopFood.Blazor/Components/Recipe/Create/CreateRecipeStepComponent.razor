@@ -1,0 +1,28 @@
+﻿<MudSimpleTable Dense="true" Hover="true" Elevation="0" Square="true" Style="overflow-x: auto;">
+    <tbody>
+    @foreach (var (step, index) in RecipeSteps.Select((value, index) => (value, index + 1)))
+    {
+        <tr>
+            <td>
+                @index
+            </td>
+            <td>
+                @step.Text
+            </td>
+            <td><MudIconButton Icon="@Icons.Material.Filled.Edit" Size="Size.Small"></MudIconButton>
+            </td>
+        </tr>
+    }
+    </tbody>
+</MudSimpleTable>
+
+
+<EditForm Model="NewRecipeStep" OnSubmit="@NewRecipeStepSubmit">
+    <MudTextField Label="Text" HelperText="Text for the step"
+                  @bind-Value="NewRecipeStep.Text" For="@(() => NewRecipeStep.Text)" />
+    <MudCardActions>
+        <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Next</MudButton>
+    </MudCardActions>
+</EditForm>
+
+

@@ -19,7 +19,6 @@ namespace ThopFood.Blazor.Components.Recipe.Create
             base.OnInitialized();
             _model = new CreateRecipeTitle();
 
-
             if (Recipe is not null)
             {
                 _model.Title = Recipe.Title;
