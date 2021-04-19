@@ -1,13 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using ThopFood.API.Data;
-using ThopFood.API.Repositories;
-using ThopFood.API.Repositories.Interfaces;
+using ThopFood.API.Extensions;
 
 namespace ThopFood.API
 {
@@ -23,29 +19,11 @@ namespace ThopFood.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: "all",
-                    builder =>
-                    {
-                        builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
-                    });
-            });
 
-            services.AddDbContext<ApplicationDatabaseContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.InitiateServices(Configuration, GetType().Assembly);
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ThopFood.API", Version = "v1" });
-            });
-
             services.AddDatabaseDeveloperPageExceptionFilter();
-
-            services.AddScoped<IRecipeRepository, RecipeRepository>();
-            services.AddScoped<IIngredientRepository, IngredientRepository>();
-            services.AddScoped<IRecipeStepRepository, RecipeStepRepository>();
-            services.AddAutoMapper(typeof(Program).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
