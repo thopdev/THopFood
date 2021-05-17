@@ -1,0 +1,137 @@
+﻿{
+  Instance: {
+    UserId: Id_1,
+    UserProfileService: {
+      Mock: {
+        Behavior: Loose,
+        CallBase: true,
+        DefaultValueProvider: {},
+        Name: Mock<IUserProfileService:1>,
+        DefaultValue: Mock,
+        Invocations: [
+          {
+            Method: IUserProfileService.GetUserProfileAsync(Int32 id),
+            MethodImplementation: IUserProfileServiceProxy.GetUserProfileAsync(Int32 id),
+            Arguments: [
+              5
+            ],
+            MatchingSetup: {
+              Expectation: {
+                Expression: x => x.GetUserProfileAsync(IsAny()),
+                Method: IUserProfileService.GetUserProfileAsync(Int32 id),
+                Arguments: [
+                  IsAny()
+                ]
+              },
+              Expression: x => x.GetUserProfileAsync(IsAny()),
+              Method: IUserProfileService.GetUserProfileAsync(Int32 id),
+              OriginalExpression: x => x.GetUserProfileAsync(IsAny()),
+              IsMatched: true
+            },
+            ProxyType: IUserProfileServiceProxy,
+            ReturnValue: {
+              Result: {
+                Name: Thopdev,
+                UserName: TEST,
+                Followers: 5,
+                Rating: 2,
+                RatingCount: 2456,
+                Following: true
+              },
+              Id: Id_2,
+              Status: RanToCompletion,
+              IsCompleted: true,
+              IsCompletedSuccessfully: true
+            }
+          }
+        ],
+        Setups: [
+          {
+            Expectation: {
+              Expression: x => x.GetUserProfileAsync(IsAny()),
+              Method: IUserProfileService.GetUserProfileAsync(Int32 id),
+              Arguments: [
+                IsAny()
+              ]
+            },
+            Expression: x => x.GetUserProfileAsync(IsAny()),
+            Method: IUserProfileService.GetUserProfileAsync(Int32 id),
+            OriginalExpression: x => x.GetUserProfileAsync(IsAny()),
+            IsMatched: true
+          }
+        ]
+      },
+      Interceptor: {
+        Behavior: Loose,
+        CallBase: true,
+        DefaultValueProvider: {},
+        Name: Mock<IUserProfileService:1>,
+        DefaultValue: Mock,
+        Invocations: [
+          {
+            Method: IUserProfileService.GetUserProfileAsync(Int32 id),
+            MethodImplementation: IUserProfileServiceProxy.GetUserProfileAsync(Int32 id),
+            Arguments: [
+              5
+            ],
+            MatchingSetup: {
+              Expectation: {
+                Expression: x => x.GetUserProfileAsync(IsAny()),
+                Method: IUserProfileService.GetUserProfileAsync(Int32 id),
+                Arguments: [
+                  IsAny()
+                ]
+              },
+              Expression: x => x.GetUserProfileAsync(IsAny()),
+              Method: IUserProfileService.GetUserProfileAsync(Int32 id),
+              OriginalExpression: x => x.GetUserProfileAsync(IsAny()),
+              IsMatched: true
+            },
+            ProxyType: IUserProfileServiceProxy,
+            ReturnValue: {
+              Result: {
+                Name: Thopdev,
+                UserName: TEST,
+                Followers: 5,
+                Rating: 2,
+                RatingCount: 2456,
+                Following: true
+              },
+              Id: Id_2,
+              Status: RanToCompletion,
+              IsCompleted: true,
+              IsCompletedSuccessfully: true
+            }
+          }
+        ],
+        Setups: [
+          {
+            Expectation: {
+              Expression: x => x.GetUserProfileAsync(IsAny()),
+              Method: IUserProfileService.GetUserProfileAsync(Int32 id),
+              Arguments: [
+                IsAny()
+              ]
+            },
+            Expression: x => x.GetUserProfileAsync(IsAny()),
+            Method: IUserProfileService.GetUserProfileAsync(Int32 id),
+            OriginalExpression: x => x.GetUserProfileAsync(IsAny()),
+            IsMatched: true
+          }
+        ]
+      }
+    },
+    Loaded: true,
+    Profile: {
+      Name: Thopdev,
+      UserName: TEST,
+      Followers: 5,
+      Rating: 2,
+      RatingCount: 2456,
+      Following: true
+    }
+  },
+  RenderCount: 1,
+  NodeCount: 44,
+  Bytes: 3.794
+}
