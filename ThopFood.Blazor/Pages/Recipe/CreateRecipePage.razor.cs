@@ -25,7 +25,7 @@ namespace ThopFood.Blazor.Pages.Recipe
         private MudTabPanel _ingredientsTab;
 
 
-        private RecipeCreationStatus _status = 0;
+        private RecipeCreationStatus _status;
 
         public async Task OnTitleSubmit(CreateRecipeTitle newValues)
         {
@@ -71,49 +71,36 @@ namespace ThopFood.Blazor.Pages.Recipe
         public async Task OnNewRecipeStep(CreateRecipeStep step)
         {
             RecipeStepHttpService.CreateAsync(Recipe.Id, step);
-            
-
+            UpdateTabs(step);
         }
 
         public void UpdateTabs(object obj)
         {
-            switch (obj)
+            var newStatus = (obj) switch
             {
-                case CreateRecipeTitle:
-                {
-                    _status = _status < RecipeCreationStatus.Description ? RecipeCreationStatus.Description : _status;
-                    StateHasChanged();
+                CreateRecipeTitle => RecipeCreationStatus.Description,
+                CreateRecipeDescription => RecipeCreationStatus.Steps,
+                CreateRecipeStep => RecipeCreationStatus.Ingredient,
+                _ => throw new ArgumentException($"Does not support model of type {obj.GetType().Name}")
+            };
 
-                    _tabs.ActivatePanel(_descriptionTab);
-                    return;
-                }
-                case CreateRecipeDescription:
-                {
-                    _status = _status < RecipeCreationStatus.Steps ? RecipeCreationStatus.Steps : _status;
-                    StateHasChanged();
-
-                    _tabs.ActivatePanel(_stepsTab);
-                    return;
-                }
-
-                default:
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
+            if (newStatus <= _status) return;
+            _status = newStatus;
+            _tabs.Panels[(int)newStatus].Disabled = false;
+            StateHasChanged();
+            _tabs.ActivatePanel(_tabs.ActivePanelIndex + 1);
+            StateHasChanged();
 
 
         }
-
     }
-
 
     public enum RecipeCreationStatus
     {
         Title,
         Description,
         Steps,
-        Ingredient
+        Ingredient,
+        Utensil
     }
 }
