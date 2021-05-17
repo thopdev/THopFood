@@ -1,3 +1,5 @@
+using System.Reflection;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,7 +24,7 @@ namespace ThopFood.API
 
             services.InitiateServices(Configuration, GetType().Assembly);
 
-            services.AddControllers();
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblies(new []{GetType().Assembly}));
             services.AddDatabaseDeveloperPageExceptionFilter();
         }
 

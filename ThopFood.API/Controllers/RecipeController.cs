@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +9,7 @@ using ThopFood.API.Repositories.Interfaces;
 using ThopFood.Shared.Dtos.EntityCreated;
 using ThopFood.Shared.Dtos.Recipes;
 using ThopFood.Shared.Dtos.RecipeSteps;
+using ThopFood.Shared.Requests.RecipeIngredient;
 
 namespace ThopFood.API.Controllers
 {
@@ -55,6 +57,9 @@ namespace ThopFood.API.Controllers
             return CreatedAtAction(nameof(Index), new {id}, new EntityCreateDto(id));
         }
 
+
+
+
         [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -68,6 +73,49 @@ namespace ThopFood.API.Controllers
             }
 
             return NotFound();
+        }
+    }
+
+    [Route("api/recipe/{recipeId:int}/[action]")]
+    [ApiController]
+
+    public class RecipeIngredientController : ControllerBase
+    {
+        private readonly IRecipeIngredientRepository _recipeIngredientRepository;
+
+        public RecipeIngredientController(IRecipeIngredientRepository recipeIngredientRepository)
+        {
+            _recipeIngredientRepository = recipeIngredientRepository;
+        }
+
+
+        [HttpPut("{ingredientId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> UpdateIngredient(int recipeId, int ingredientId, AddOrUpdateRecipeIngredientRequest requestBody, CancellationToken cancellationToken)
+        {
+            await _recipeIngredientRepository.AddOrUpdateAsync(recipeId, ingredientId, requestBody.Amount,
+                cancellationToken);
+
+            return Ok();
+        }
+
+        [HttpDelete("{ingredientId:int}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
+        public async Task<IActionResult> DeleteIngredient(int recipeId, int ingredientId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                await _recipeIngredientRepository.DeleteAsync(recipeId, ingredientId,
+                    cancellationToken);
+
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
     }
 }
