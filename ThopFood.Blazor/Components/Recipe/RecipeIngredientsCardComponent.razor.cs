@@ -34,7 +34,6 @@ namespace ThopFood.Blazor.Components.Recipe
 
         public async Task<RecipeIngredient> GetIngredientWithAmount(RecipeIngredientId recipeIngredient)
         {
-            Console.WriteLine("test" + recipeIngredient.IngredientId);
             var ingredient = await IngredientService.GetIngredientById(recipeIngredient.IngredientId);
             return new RecipeIngredient
             {

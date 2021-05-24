@@ -21,10 +21,17 @@ namespace ThopFood.API.Controllers
             this._ingredientRepository = ingredientRepository;
         }
 
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IngredientResponse>> GetAll()
+        {
+            return Ok(await _ingredientRepository.GetAllAsync());
+        }
+
         [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IngredientDto>> Index(int id)
+        public async Task<ActionResult<IngredientResponse>> Index(int id)
         {
             var ingredient = await _ingredientRepository.GetById(id);
 
@@ -33,7 +40,7 @@ namespace ThopFood.API.Controllers
                 return NotFound($"{nameof(Ingredient)} not found");
             }
 
-            return new IngredientDto
+            return new IngredientResponse
             {
                 Id = ingredient.Id,
                 Name = ingredient.Name,

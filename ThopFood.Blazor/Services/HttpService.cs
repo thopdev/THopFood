@@ -7,6 +7,7 @@ namespace ThopFood.Blazor.Services
 {
     public interface IHttpService
     {
+        Task<T> GetAsync<T>(string controller);
         Task<T> GetAsync<T>(string controller, int id);
         Task<T> PostAsync<T>(string controller, object value);
         Task PutAsync(string endpoint, int id, object value);
@@ -28,10 +29,22 @@ namespace ThopFood.Blazor.Services
             }
         }
 
+        public async Task<T> GetAsync<T>(string controller)
+        {
+            // ReSharper disable once AssignNullToNotNullAttribute
+            var uri = new Uri(_httpClient.BaseAddress, $"api/{controller}");
+            return await GetAsync<T>(uri);
+        }
+
         public async Task<T> GetAsync<T>(string controller, int id)
         {
             // ReSharper disable once AssignNullToNotNullAttribute
             var uri = new Uri(_httpClient.BaseAddress,  $"api/{controller}/{id}");
+            return await GetAsync<T>(uri);
+        }
+
+        private async Task<T> GetAsync<T>(Uri uri)
+        {
             var response = await _httpClient.GetAsync(uri);
             return await ProcessRequestAsync<T>(response);
         }

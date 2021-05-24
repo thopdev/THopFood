@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ThopFood.API.Data;
 using ThopFood.API.Data.Entities;
 using ThopFood.API.Repositories.Interfaces;
@@ -18,6 +19,11 @@ namespace ThopFood.API.Repositories
         public IngredientRepository(ApplicationDatabaseContext databaseContext)
         {
             _databaseContext = databaseContext;
+        }
+
+        public async Task<List<Ingredient>> GetAllAsync()
+        {
+            return await _databaseContext.Ingredients.ToListAsync();
         }
 
         public async Task<Ingredient> GetById(int id)

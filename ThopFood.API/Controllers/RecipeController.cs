@@ -76,7 +76,7 @@ namespace ThopFood.API.Controllers
         }
     }
 
-    [Route("api/recipe/{recipeId:int}/[action]")]
+    [Route("api/recipe/{recipeId:int}/ingredient")]
     [ApiController]
 
     public class RecipeIngredientController : ControllerBase

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using ThopFood.Blazor.Models.Recipe.Create;
 using ThopFood.Blazor.Services.EndpointServices.Interfaces;
 using ThopFood.Shared.Dtos.EntityCreated;
@@ -21,11 +22,11 @@ namespace ThopFood.Blazor.Services.EndpointServices
             _mapper = mapper;
         }
 
-        public void CreateAsync(int recipeId, CreateRecipeStep stepModel)
+        public async Task CreateAsync(int recipeId, CreateRecipeStep stepModel)
         {
             var request = _mapper.Map<CreateRecipeStepRequest>(stepModel);
 
-            _httpService.PostAsync<EntityCreateDto>($"{recipe}/{recipeId}/{step}", request);
+            await _httpService.PostAsync<EntityCreateDto>($"{recipe}/{recipeId}/{step}", request);
         }
     }
 }

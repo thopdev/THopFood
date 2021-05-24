@@ -12,9 +12,9 @@
                     <CreateRecipeStepComponent OnNewRecipe="@OnNewRecipeStep" />
                 </MudTabPanel>
                 <MudTabPanel @ref="_ingredientsTab" Disabled="@((int)_status < (int)RecipeCreationStatus.Ingredient)" Text="Ingredients">
-                    <div>Ingredient</div>
+                    <CreateRecipeIngredientComponent OnNewRecipeIngredient="@OnNewRecipeIngredient"></CreateRecipeIngredientComponent>
                 </MudTabPanel>
-                <MudTabPanel @ref="_ingredientsTab" Disabled="@((int)_status < (int)RecipeCreationStatus.Utensil)" Text="Ingredients">
+                <MudTabPanel @ref="_ingredientsTab" Disabled="@((int)_status < (int)RecipeCreationStatus.Utensil)" Text="Utensil">
                     <div>Utensil</div>
                 </MudTabPanel>
             </MudTabs>

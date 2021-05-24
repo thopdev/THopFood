@@ -19,7 +19,7 @@ namespace ThopFood.API.Repositories
             _applicationDatabaseContext = applicationDatabaseContext;
         }
 
-        public async Task AddOrUpdateAsync(int recipeId, int ingredientId, int amount, CancellationToken cancellationToken)
+        public async Task AddOrUpdateAsync(int recipeId, int ingredientId, double amount, CancellationToken cancellationToken)
         {
             var recipeIngredient = await RecipeIngredients.FindAsync(new object[]{recipeId, ingredientId}, cancellationToken) ;
 

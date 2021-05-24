@@ -16,6 +16,7 @@ namespace ThopFood.Blazor.Pages.Recipe
 
         [Inject] public IMapper Mapper { get; set; }
         [Inject] public IRecipeService RecipeService { get; set; }
+        [Inject] public IRecipeIngredientService RecipeIngredientService { get; set; }
         [Inject] public IRecipeStepHttpService RecipeStepHttpService { get; set; }
 
         private MudTabs _tabs;
@@ -70,8 +71,14 @@ namespace ThopFood.Blazor.Pages.Recipe
 
         public async Task OnNewRecipeStep(CreateRecipeStep step)
         {
-            RecipeStepHttpService.CreateAsync(Recipe.Id, step);
+            await RecipeStepHttpService.CreateAsync(Recipe.Id, step);
             UpdateTabs(step);
+        }
+
+        public async Task OnNewRecipeIngredient(RecipeIngredient recipeIngredient)
+        {
+            await RecipeIngredientService.CreateAsync(Recipe.Id, recipeIngredient);
+            UpdateTabs(recipeIngredient);
         }
 
         public void UpdateTabs(object obj)
@@ -81,6 +88,7 @@ namespace ThopFood.Blazor.Pages.Recipe
                 CreateRecipeTitle => RecipeCreationStatus.Description,
                 CreateRecipeDescription => RecipeCreationStatus.Steps,
                 CreateRecipeStep => RecipeCreationStatus.Ingredient,
+                RecipeIngredient => RecipeCreationStatus.Utensil,
                 _ => throw new ArgumentException($"Does not support model of type {obj.GetType().Name}")
             };
 

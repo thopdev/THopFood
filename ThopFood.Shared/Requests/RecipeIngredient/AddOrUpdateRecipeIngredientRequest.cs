@@ -2,6 +2,6 @@
 {
     public class AddOrUpdateRecipeIngredientRequest
     {
-        public int Amount { get; set; }
+        public double Amount { get; set; }
     }
 }

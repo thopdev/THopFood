@@ -5,7 +5,7 @@ namespace ThopFood.API.Repositories.Interfaces
 {
     public interface IRecipeIngredientRepository
     {
-        Task AddOrUpdateAsync(int recipeId, int ingredientId, int amount, CancellationToken cancellationToken);
+        Task AddOrUpdateAsync(int recipeId, int ingredientId, double amount, CancellationToken cancellationToken);
         Task DeleteAsync(int recipeId, int ingredientId, CancellationToken cancellationToken);
     }
 }
