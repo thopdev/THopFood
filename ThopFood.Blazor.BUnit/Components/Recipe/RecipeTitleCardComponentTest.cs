@@ -16,7 +16,6 @@ namespace ThopFood.Blazor.BUnit.Components.Recipe
             Assert.Equal(4, component.FindAll(".mud-skeleton").Count);
 
             component.SetParametersAndRender((nameof(RecipeTitleCardComponent.Recipe), new RecipeModel()));
-
             Assert.Equal(0, component.FindAll(".mud-skeleton").Count);
         }
 
