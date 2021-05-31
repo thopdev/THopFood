@@ -94,7 +94,6 @@ namespace ThopFood.Blazor.Pages.Recipe
 
             if (newStatus <= _status) return;
             _status = newStatus;
-            _tabs.Panels[(int)newStatus].Disabled = false;
             StateHasChanged();
             _tabs.ActivatePanel(_tabs.ActivePanelIndex + 1);
             StateHasChanged();
