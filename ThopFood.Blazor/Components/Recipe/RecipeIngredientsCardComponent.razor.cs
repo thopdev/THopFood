@@ -25,8 +25,6 @@ namespace ThopFood.Blazor.Components.Recipe
                 throw new ArgumentNullException($"Ingredient list cannot be null in {nameof(RecipeIngredientsCardComponent)}");
             }
 
-            Console.WriteLine("Ingredients are not null");
-            Console.WriteLine(IngredientIds.Length);
             var ingredientTasks = IngredientIds.Select(GetIngredientWithAmount);
 
             Ingredients = await Task.WhenAll(ingredientTasks);
@@ -36,7 +34,6 @@ namespace ThopFood.Blazor.Components.Recipe
 
         public async Task<RecipeIngredient> GetIngredientWithAmount(RecipeIngredientId recipeIngredient)
         {
-            Console.WriteLine("test" + recipeIngredient.IngredientId);
             var ingredient = await IngredientService.GetIngredientById(recipeIngredient.IngredientId);
             return new RecipeIngredient
             {

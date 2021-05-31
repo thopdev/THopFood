@@ -12,7 +12,7 @@ namespace ThopFood.Blazor.ServicesProviders
     {
         public void InitiateService(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44377/api") });
+            serviceCollection.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:5004/api") });
 
             serviceCollection.AddSingleton(new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }

@@ -16,6 +16,7 @@ namespace ThopFood.Blazor.Pages.Recipe
 
         [Inject] public IMapper Mapper { get; set; }
         [Inject] public IRecipeService RecipeService { get; set; }
+        [Inject] public IRecipeIngredientService RecipeIngredientService { get; set; }
         [Inject] public IRecipeStepHttpService RecipeStepHttpService { get; set; }
 
         private MudTabs _tabs;
@@ -25,7 +26,7 @@ namespace ThopFood.Blazor.Pages.Recipe
         private MudTabPanel _ingredientsTab;
 
 
-        private RecipeCreationStatus _status = 0;
+        private RecipeCreationStatus _status;
 
         public async Task OnTitleSubmit(CreateRecipeTitle newValues)
         {
@@ -70,50 +71,43 @@ namespace ThopFood.Blazor.Pages.Recipe
 
         public async Task OnNewRecipeStep(CreateRecipeStep step)
         {
-            RecipeStepHttpService.CreateAsync(Recipe.Id, step);
-            
+            await RecipeStepHttpService.CreateAsync(Recipe.Id, step);
+            UpdateTabs(step);
+        }
 
+        public async Task OnNewRecipeIngredient(RecipeIngredient recipeIngredient)
+        {
+            await RecipeIngredientService.CreateAsync(Recipe.Id, recipeIngredient);
+            UpdateTabs(recipeIngredient);
         }
 
         public void UpdateTabs(object obj)
         {
-            switch (obj)
+            var newStatus = (obj) switch
             {
-                case CreateRecipeTitle:
-                {
-                    _status = _status < RecipeCreationStatus.Description ? RecipeCreationStatus.Description : _status;
-                    StateHasChanged();
+                CreateRecipeTitle => RecipeCreationStatus.Description,
+                CreateRecipeDescription => RecipeCreationStatus.Steps,
+                CreateRecipeStep => RecipeCreationStatus.Ingredient,
+                RecipeIngredient => RecipeCreationStatus.Utensil,
+                _ => throw new ArgumentException($"Does not support model of type {obj.GetType().Name}")
+            };
 
-                    _tabs.ActivatePanel(_descriptionTab);
-                    return;
-                }
-                case CreateRecipeDescription:
-                {
-                    _status = _status < RecipeCreationStatus.Steps ? RecipeCreationStatus.Steps : _status;
-                    StateHasChanged();
-
-                    _tabs.ActivatePanel(_stepsTab);
-                    return;
-                }
-
-                default:
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
+            if (newStatus <= _status) return;
+            _status = newStatus;
+            StateHasChanged();
+            _tabs.ActivatePanel(_tabs.ActivePanelIndex + 1);
+            StateHasChanged();
 
 
         }
-
     }
-
 
     public enum RecipeCreationStatus
     {
         Title,
         Description,
         Steps,
-        Ingredient
+        Ingredient,
+        Utensil
     }
 }

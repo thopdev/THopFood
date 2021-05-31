@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThopFood.Blazor.BUnit", "Th
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{16DA982D-4293-4BDD-8096-2AC7FADCE465}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThopFood.API", "ThopFood.API\ThopFood.API.csproj", "{C302B902-B34A-44D6-A10B-B080C0114908}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThopFood.API", "ThopFood.API\ThopFood.API.csproj", "{C302B902-B34A-44D6-A10B-B080C0114908}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThopFood.Shared", "ThopFood.Shared\ThopFood.Shared.csproj", "{55534173-E512-4B99-BC6C-BA80DE047BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThopFood.Shared", "ThopFood.Shared\ThopFood.Shared.csproj", "{55534173-E512-4B99-BC6C-BA80DE047BC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

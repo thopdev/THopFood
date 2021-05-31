@@ -15,7 +15,9 @@ namespace ThopFood.API.ServiceProviders
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ThopFood.API", Version = "v1" });
+                
             });
+            
             services.AddAutoMapper(typeof(Program).Assembly);
         }
     }
