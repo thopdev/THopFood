@@ -1,5 +1,5 @@
 ﻿using Bunit;
-using Bunit.Rendering;
+using FluentAssertions;
 using ThopFood.Blazor.Components.Rating;
 using Xunit;
 
@@ -15,9 +15,25 @@ namespace ThopFood.Blazor.BUnit.Components.Rating
             var component = RenderComponent<StarRatingComponent>(ComponentParameter.CreateParameter(nameof(StarRatingComponent.AmountOfStars), starCount));
 
             Assert.Equal(starCount, component.FindAll("svg").Count);
+        }
+
+        [Theory]
+        [InlineData(5)]
+        [InlineData(3)]
+        public void AmountOfStarTestFluent(int starCount)
+        {
+            var component = RenderComponent<StarRatingComponent>(ComponentParameter.CreateParameter(nameof(StarRatingComponent.AmountOfStars), starCount));
+            component.FindAll("svg").Should().HaveCount(starCount);
+        }
+
+
+        [Fact]
+        public void Test()
+        {
+            var component = RenderComponent<StarRatingComponent>(ComponentParameter.CreateParameter(nameof(StarRatingComponent.AmountOfStars), starCount));
 
         }
-        
+
         [Fact]
         public void DefaultStar()
         {
