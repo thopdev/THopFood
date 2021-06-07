@@ -28,13 +28,6 @@ namespace ThopFood.Blazor.BUnit.Components.Rating
 
 
         [Fact]
-        public void Test()
-        {
-            var component = RenderComponent<StarRatingComponent>(ComponentParameter.CreateParameter(nameof(StarRatingComponent.AmountOfStars), starCount));
-
-        }
-
-        [Fact]
         public void DefaultStar()
         {
             var component = RenderComponent<StarRatingComponent>();
