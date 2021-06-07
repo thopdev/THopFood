@@ -17,11 +17,11 @@
             }
             else if (Profile.Following)
             {
-                <MudButton Variant="Variant.Outlined" Size="Size.Small" Color="Color.Secondary" OnClick="FollowButton">Following</MudButton>
+                <MudButton UserAttributes="@(new Dictionary<string, object>(){{"data-follow-button", true}})" Variant="Variant.Outlined" Size="Size.Small" Color="Color.Secondary" OnClick="FollowButton">Following</MudButton>
             }
             else
             {
-                <MudButton Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="FollowButton">Follow</MudButton>
+                <MudButton UserAttributes="@(new Dictionary<string, object>(){{"data-follow-button", false}})" Variant="Variant.Filled" Size="Size.Small" Color="Color.Primary" OnClick="FollowButton">Follow</MudButton>
             }
         </CardHeaderActions>
     </MudCardHeader>
@@ -56,7 +56,7 @@
                 {
                     <MudGrid Justify="Justify.SpaceAround" Spacing="0">
                         <MudItem>
-                            <MudText Typo="Typo.h6">@Profile.Followers Followers</MudText>
+                            <MudText UserAttributes="@(new Dictionary<string, object>(){{"data-followers", Profile.Followers}})" Typo="Typo.h6">@Profile.Followers Followers</MudText>
                         </MudItem>
                         <MudItem>
 
