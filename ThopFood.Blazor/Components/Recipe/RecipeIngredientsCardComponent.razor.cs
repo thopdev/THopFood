@@ -43,13 +43,13 @@ namespace ThopFood.Blazor.Components.Recipe
         }
 
 
-        public List<RecipeUtensil> Utensils { get; set; } = new List<RecipeUtensil>(new List<RecipeUtensil>
+        public List<Utensil> Utensils { get; set; } = new List<Utensil>(new List<Utensil>
         {
-            new RecipeUtensil {Name = "AirFryer"},
-            new RecipeUtensil {Name = "Spoon"},
-            new RecipeUtensil{Name = "Saute Pan"},
-            new RecipeUtensil{Name = "BBQ"},
-            new RecipeUtensil{Name = "Dutch Oven"}
+            new Utensil {Name = "AirFryer"},
+            new Utensil {Name = "Spoon"},
+            new Utensil{Name = "Saute Pan"},
+            new Utensil{Name = "BBQ"},
+            new Utensil{Name = "Dutch Oven"}
         });
     }
 }

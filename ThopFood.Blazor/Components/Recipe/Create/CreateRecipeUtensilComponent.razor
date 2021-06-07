@@ -1,0 +1,29 @@
+﻿<MudSimpleTable Dense="true" Hover="true" Elevation="0" Square="true" Style="overflow-x: auto;">
+    <tbody>
+    @foreach (var (utensil, index) in SelectedUtensils.Select((value, index) => (value, index + 1)))
+    {
+        <tr>
+            <td>
+                @index
+            </td>
+            <td>
+                @utensil.Name
+            </td>
+            <td>
+                <MudIconButton Icon="@Icons.Material.Filled.Edit" Size="Size.Small"></MudIconButton>
+            </td>
+        </tr>
+    }
+    </tbody>
+</MudSimpleTable>
+<MudGrid>
+    <MudItem xs="6">
+        <MudAutocomplete T="@ThopFood.Blazor.Models.Utensil" Label="Ingredient" @bind-Value="@Utensil" @ref="AutoComplete" SearchFunc="Search" ToStringFunc="@(i => i.Name)" ResetValueOnEmptyText="@(true)" />
+    </MudItem>
+    <MudItem xs="3">
+        <MudCardActions>
+            <MudButton OnClick="OnSubmit" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Next</MudButton>
+        </MudCardActions>
+    </MudItem>
+
+</MudGrid>

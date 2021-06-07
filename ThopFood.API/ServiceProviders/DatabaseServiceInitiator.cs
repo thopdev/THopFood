@@ -18,6 +18,7 @@ namespace ThopFood.API.ServiceProviders
             services.AddScoped<IIngredientRepository, IngredientRepository>();
             services.AddScoped<IRecipeStepRepository, RecipeStepRepository>();
             services.AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>();
+            services.AddScoped<IUtensilRepository, UtensilRepository>();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace ThopFood.API.Repositories
             _mapper = mapper;
         }
 
-        public async Task<Recipe> GetRecipeByIdAsync(int id)
+        public async Task<Recipe> GetByIdAsync(int id)
         {
             return await _databaseContext.Recipes.FindAsync(id);
         }
@@ -46,7 +46,7 @@ namespace ThopFood.API.Repositories
 
         public async Task<bool> UpdateRecipeAsync(int id, UpdateRecipeDto dto, CancellationToken cancellationToken)
         {
-            var entity = await GetRecipeByIdAsync(id);
+            var entity = await GetByIdAsync(id);
 
             if (entity == null)
             {

@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ThopFood.API.Repositories.Interfaces;
-using ThopFood.Shared.Dtos.EntityCreated;
 using ThopFood.Shared.Requests.RecipeStep;
+using ThopFood.Shared.Responses.EntityCreated;
 
 namespace ThopFood.API.Controllers
 {
@@ -32,9 +32,9 @@ namespace ThopFood.API.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<EntityCreateDto>> Create(int recipeId, [FromBody] CreateRecipeStepRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<EntityCreateResponse>> Create(int recipeId, [FromBody] CreateRecipeStepRequest request, CancellationToken cancellationToken)
         {
-            if ((await _recipeRepository.GetRecipeByIdAsync(recipeId) == null))
+            if ((await _recipeRepository.GetByIdAsync(recipeId) == null))
             {
                 return NotFound();
             }
@@ -42,7 +42,7 @@ namespace ThopFood.API.Controllers
 
             var id = await _recipeStepRepository.CreateAsync(recipeId, request, cancellationToken);
 
-            return CreatedAtAction(nameof(Index), new { RecipeId = recipeId, StepId = id }, new EntityCreateDto(id));
+            return CreatedAtAction(nameof(Index), new { RecipeId = recipeId, StepId = id }, new EntityCreateResponse(id));
         }
     }
 }

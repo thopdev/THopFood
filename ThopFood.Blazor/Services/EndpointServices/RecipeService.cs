@@ -5,8 +5,8 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using AutoMapper;
 using ThopFood.Blazor.Models;
-using ThopFood.Shared.Dtos.EntityCreated;
 using ThopFood.Shared.Dtos.Recipes;
+using ThopFood.Shared.Responses.EntityCreated;
 
 namespace ThopFood.Blazor.Services.EndpointServices
 {
@@ -52,7 +52,7 @@ namespace ThopFood.Blazor.Services.EndpointServices
         public async Task<int> CreateRecipeAsync(RecipeModel recipe)
         {
             var dto = _mapper.Map<NewRecipeDto>(recipe);
-            var idModel = await _httpService.PostAsync<EntityCreateDto>(ControllerEndpoint, dto);
+            var idModel = await _httpService.PostAsync<EntityCreateResponse>(ControllerEndpoint, dto);
             return idModel.Id;
         }
 

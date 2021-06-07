@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using ThopFood.API.Data.Entities;
 using ThopFood.API.Repositories.Interfaces;
-using ThopFood.Shared.Dtos.EntityCreated;
 using ThopFood.Shared.Dtos.Recipes;
 using ThopFood.Shared.Dtos.RecipeSteps;
 using ThopFood.Shared.Requests.RecipeIngredient;
+using ThopFood.Shared.Responses.EntityCreated;
 
 namespace ThopFood.API.Controllers
 {
@@ -29,7 +29,7 @@ namespace ThopFood.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<RecipeDto>> Index(int id)
         {
-            var recipe = await _recipeRepository.GetRecipeByIdAsync(id);
+            var recipe = await _recipeRepository.GetByIdAsync(id);
 
             if (recipe == null)
             {
@@ -42,23 +42,20 @@ namespace ThopFood.API.Controllers
                 Title = recipe.Title,
                 Description = recipe.Description,
                 ImageUrl = recipe.ImageUrl,
-                Ingredients = recipe.Ingredients.Select(x => new RecipeIngredientDto{Amount = x.Amount, Id = x.IngredientId}).ToArray(),
+                Ingredients = recipe.Ingredients.Select(x => new RecipeIngredientDto { Amount = x.Amount, Id = x.IngredientId }).ToArray(),
                 OwnerId = recipe.OwnerId,
-                Steps = recipe.Steps.Select(x => new RecipeStepDto{Text = x.Id.ToString()}).ToArray(),
+                Steps = recipe.Steps.Select(x => new RecipeStepDto { Text = x.Id.ToString() }).ToArray(),
             });
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<EntityCreateDto>> Create([FromBody] NewRecipeDto newRecipe, CancellationToken cancellationToken)
+        public async Task<ActionResult<EntityCreateResponse>> Create([FromBody] NewRecipeDto newRecipe, CancellationToken cancellationToken)
         {
             var id = await _recipeRepository.CreateRecipeAsync(newRecipe, cancellationToken);
-         
-            return CreatedAtAction(nameof(Index), new {id}, new EntityCreateDto(id));
+
+            return CreatedAtAction(nameof(Index), new { id }, new EntityCreateResponse(id));
         }
-
-
-
 
         [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -78,7 +75,6 @@ namespace ThopFood.API.Controllers
 
     [Route("api/recipe/{recipeId:int}/ingredient")]
     [ApiController]
-
     public class RecipeIngredientController : ControllerBase
     {
         private readonly IRecipeIngredientRepository _recipeIngredientRepository;
@@ -87,7 +83,6 @@ namespace ThopFood.API.Controllers
         {
             _recipeIngredientRepository = recipeIngredientRepository;
         }
-
 
         [HttpPut("{ingredientId:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -102,7 +97,6 @@ namespace ThopFood.API.Controllers
         [HttpDelete("{ingredientId:int}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-
         public async Task<IActionResult> DeleteIngredient(int recipeId, int ingredientId, CancellationToken cancellationToken)
         {
             try
