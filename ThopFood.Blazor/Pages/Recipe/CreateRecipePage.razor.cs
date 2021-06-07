@@ -40,11 +40,11 @@ namespace ThopFood.Blazor.Pages.Recipe
             {
                 var id = await RecipeService.CreateRecipeAsync(recipe);
                 Recipe = await RecipeService.GetRecipeById(id);
+
                 _status = RecipeCreationStatus.Description;
                 StateHasChanged();
-
                 _tabs.ActivatePanel(_descriptionTab);
-
+                StateHasChanged();
                 return;
             }
 
@@ -73,6 +73,11 @@ namespace ThopFood.Blazor.Pages.Recipe
         {
             await RecipeStepHttpService.CreateAsync(Recipe.Id, step);
             UpdateTabs(step);
+        }
+
+        public async Task OnNewRecipeUtensil(Utensil utensil)
+        {
+
         }
 
         public async Task OnNewRecipeIngredient(RecipeIngredient recipeIngredient)

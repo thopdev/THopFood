@@ -5,6 +5,7 @@ namespace ThopFood.API.Data.Entities
     public class Utensil
     {
         public int  Id { get; set; }
+        public string Name { get; set; }
 
         public virtual ICollection<Recipe> Recipes { get; set; }
     }

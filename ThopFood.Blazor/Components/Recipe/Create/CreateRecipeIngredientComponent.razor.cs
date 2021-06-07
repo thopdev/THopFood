@@ -42,7 +42,7 @@ namespace ThopFood.Blazor.Components.Recipe.Create
         {
             return Task.FromResult(string.IsNullOrEmpty(value) ? 
                 _ingredients.Where(x => x.Name is not null) : 
-                _ingredients.Where(x => x.Name is not null && x.Name.Contains(value)));
+                _ingredients.Where(x => x.Name is not null && x.Name.Contains(value, StringComparison.CurrentCultureIgnoreCase)));
         }
 
         private async Task OnSubmit()

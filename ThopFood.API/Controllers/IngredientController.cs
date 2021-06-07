@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ThopFood.API.Data.Entities;
 using ThopFood.API.Repositories.Interfaces;
-using ThopFood.Shared.Dtos.EntityCreated;
 using ThopFood.Shared.Dtos.Ingredients;
 using ThopFood.Shared.Requests.Ingredient;
+using ThopFood.Shared.Responses.EntityCreated;
 
 namespace ThopFood.API.Controllers
 {
@@ -50,11 +50,11 @@ namespace ThopFood.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<EntityCreateDto>> Create([FromBody] NewIngredientRequest requestBody, CancellationToken cancellationToken)
+        public async Task<ActionResult<EntityCreateResponse>> Create([FromBody] NewIngredientRequest requestBody, CancellationToken cancellationToken)
         {
             var id = await _ingredientRepository.CreateRecipeAsync(requestBody, cancellationToken);
 
-            return CreatedAtAction(nameof(Index), new { id }, new EntityCreateDto(id));
+            return CreatedAtAction(nameof(Index), new { id }, new EntityCreateResponse(id));
         }
     }
 }

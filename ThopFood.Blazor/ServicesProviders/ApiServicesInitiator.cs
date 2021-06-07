@@ -16,6 +16,7 @@ namespace ThopFood.Blazor.ServicesProviders
             services.AddScoped<IIngredientService, IngredientHttpService>();
             services.AddScoped<IRecipeStepHttpService, RecipeStepHttpService>();
             services.AddScoped<IRecipeIngredientService, RecipeIngredientHttpService>();
+            services.AddScoped<IUtensilRepository, UtensilHttpRepository>();
         }
     }
 }

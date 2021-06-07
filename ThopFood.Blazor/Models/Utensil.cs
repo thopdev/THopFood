@@ -1,6 +1,6 @@
 namespace ThopFood.Blazor.Models
 {
-    public class RecipeUtensil
+    public class Utensil
     {
         public string Name { get; set; }
     }
