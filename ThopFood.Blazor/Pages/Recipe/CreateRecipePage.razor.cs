@@ -80,13 +80,13 @@ namespace ThopFood.Blazor.Pages.Recipe
 
         }
 
-        public async Task OnNewRecipeIngredient(RecipeIngredient recipeIngredient)
+        public async Task OnNewRecipeIngredient(RecipeIngredient recipeIngredient, bool next)
         {
             await RecipeIngredientService.CreateAsync(Recipe.Id, recipeIngredient);
-            UpdateTabs(recipeIngredient);
+            UpdateTabs(recipeIngredient, next);
         }
 
-        public void UpdateTabs(object obj)
+        public void UpdateTabs(object obj, bool next = true)
         {
             var newStatus = (obj) switch
             {
@@ -100,10 +100,11 @@ namespace ThopFood.Blazor.Pages.Recipe
             if (newStatus <= _status) return;
             _status = newStatus;
             StateHasChanged();
-            _tabs.ActivatePanel(_tabs.ActivePanelIndex + 1);
-            StateHasChanged();
-
-
+            if (next)
+            {
+                _tabs.ActivatePanel(_tabs.ActivePanelIndex + 1);
+                StateHasChanged();
+            }
         }
     }
 

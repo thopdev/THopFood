@@ -20,17 +20,20 @@
     </tbody>
 </MudSimpleTable>
 <MudGrid>
-    <MudItem xs="6">
+    <MudItem xs="9">
         <MudAutocomplete T="@ThopFood.Blazor.Models.Ingredient" Label="Ingredient" @bind-Value="@Ingredient" @ref="AutoComplete" SearchFunc="Search" ToStringFunc="@(i => i.Name)" ResetValueOnEmptyText="@(true)" />
     </MudItem>
     <MudItem xs="3">
         <MudTextField Label="Number" HelperText="Amount"
                   @bind-Value="NewNumber"/>
     </MudItem>
-    <MudItem xs="3">
+    <MudItem xs="12">
         <MudCardActions>
-            <MudButton OnClick="OnSubmit" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Next</MudButton>
-        </MudCardActions>
+            <div class="ml-auto">
+                <MudButton OnClick="Add" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary">Add</MudButton>
+                <MudButton OnClick="AddNext" ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Secondary">Add & next</MudButton>
+            </div>
+-        </MudCardActions>
     </MudItem>
 
 </MudGrid>

@@ -16,7 +16,10 @@ namespace ThopFood.Blazor.Components.Recipe.Create
         [Inject] public IIngredientService IngredientService { get; set; }
 
         [Parameter]
-        public EventCallback<RecipeIngredient> OnNewRecipeIngredient { get; set; }
+        public EventCallback<RecipeIngredient> OnAddRecipe { get; set; }
+
+        [Parameter]
+        public EventCallback<RecipeIngredient> OnAddAndNextRecipe { get; set; }
 
         public Ingredient Ingredient { get; set; }
 
@@ -45,7 +48,18 @@ namespace ThopFood.Blazor.Components.Recipe.Create
                 _ingredients.Where(x => x.Name is not null && x.Name.Contains(value, StringComparison.CurrentCultureIgnoreCase)));
         }
 
-        private async Task OnSubmit()
+        private async Task Add() 
+        {
+            await OnAddRecipe.InvokeAsync(GetIngredientAndReset());
+        }
+
+        private async Task AddNext()
+        {
+            await OnAddAndNextRecipe.InvokeAsync(GetIngredientAndReset());
+
+        }
+
+        private RecipeIngredient GetIngredientAndReset()
         {
             var recipeIngredients = new RecipeIngredient
             {
@@ -57,8 +71,7 @@ namespace ThopFood.Blazor.Components.Recipe.Create
 
             NewNumber = default;
             AutoComplete.Reset();
-
-            await OnNewRecipeIngredient.InvokeAsync(recipeIngredients);
+            return recipeIngredients;
         }
     }
 }
