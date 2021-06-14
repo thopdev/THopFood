@@ -18,7 +18,7 @@
 </MudSimpleTable>
 <MudGrid>
     <MudItem xs="6">
-        <MudAutocomplete T="@ThopFood.Blazor.Models.Utensil" Label="Ingredient" @bind-Value="@Utensil" @ref="AutoComplete" SearchFunc="Search" ToStringFunc="@(i => i.Name)" ResetValueOnEmptyText="@(true)" />
+        <MudAutocomplete T="@ThopFood.Blazor.Models.Utensil" Label="Utensil" @bind-Value="@Utensil" @ref="AutoComplete" SearchFunc="Search" ToStringFunc="@(i => i.Name)" ResetValueOnEmptyText="@(true)" />
     </MudItem>
     <MudItem xs="3">
         <MudCardActions>
